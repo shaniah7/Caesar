@@ -1,0 +1,50 @@
+package com.company;
+import java.util.Scanner;
+public class Main {
+
+    public static void main(String[] args) {
+
+                Scanner sc = new Scanner(System.in);
+                int rotation;
+                String message = "";
+                StringBuffer result = new StringBuffer();
+                //Prompt user for a number
+                System.out.print("Enter rotation number(1-25): ");
+                rotation = sc.nextInt();
+
+                //loop until you get a number between 1 and 25
+                while (rotation < 1 && rotation > 25) {
+                    System.out.print("Invalid rotation. Enter rotation(1-25):");
+                    rotation = sc.nextInt();
+                }
+                //remove stuff
+                sc.nextLine();
+                //Prompt user for plaintext
+                System.out.print("Enter plaintext: ");
+                message = sc.nextLine();
+                //Iterate over each character of the plaintext:
+                for (int i=0; i<message.length(); i++)
+                {
+                    //If it is an uppercase letter, rotate it, preserving case, then print out the rotated character
+                    if (Character.isUpperCase(message.charAt(i)))
+                    {
+                        char ch = (char)(((int)message.charAt(i) +
+                                rotation - 65) % 26 + 65);
+                        result.append(ch);
+                    }
+                    //If it is a lowercase letter, rotate it, preserving case, then print out the rotated character
+                    else if(Character.isLowerCase(message.charAt(i)))
+                    {
+                        char ch = (char)(((int)message.charAt(i) +
+                                rotation - 97) % 26 + 97);
+                        result.append(ch);
+                    }else//If it is neither, print out the character as is
+                    {
+                        result.append(message.charAt(i));
+                    }
+                }
+                //Print a newline
+                System.out.println("");
+                System.out.println("cipher text: "+result);
+            }
+        }
